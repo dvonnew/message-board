@@ -1,0 +1,32 @@
+extends layout 
+
+block content 
+    h1= title 
+    hr 
+
+    h6 Contact Information:
+    p Email: #{user.email}
+
+    br
+    h6 Membership Information:
+    p Membership Type: #{user.membershipStatus}
+    
+    if user.admin === "true"
+        p Admin Status: Yes 
+    else 
+        p Admin Status: No
+    p 
+        a(href=user._id+'/update') Update Profile 
+    p 
+        a(href=user.id+'/changepassword') Change Password 
+    p 
+        a(href='') Update Membership 
+    p
+        a(href=user._id+'/delete') Delete Profile
+
+block sidebar
+    ul
+      li 
+        a(href='/t/all') Home
+      li 
+        a(href='/sign-out') Logout

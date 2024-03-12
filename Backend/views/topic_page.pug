@@ -1,0 +1,53 @@
+extends layout 
+
+block content 
+    h1(class="topic_title")= title 
+
+    div(class='topic_body')
+
+        if posts
+            each post in posts 
+                    div(class="post-box")
+                        h4
+                            a(href=post.url class='post-title') #{post.title}
+                        p #{post.body}
+                        if user 
+                            if user._id.toString() === post.user.toString()
+                                a(href= post.url + '/edit') Edit | 
+                                    a(href='') Delete
+
+        br
+        a(href='/posts/createpost') Add a Post
+
+block sidebar
+    ul
+        li 
+            a(href='/t/all') Home
+
+        if user
+            li 
+                a(href=user.url) Profile
+            li 
+                a(href='/sign-out') Logout
+        else 
+            li 
+                a(href='/sign-in') Sign-in
+    hr
+    ul 
+        li 
+            a(href='/t/createtopic') Start a New Topic
+        li 
+            a(href='/posts/createpost') Create a New Post
+    hr 
+    if admin 
+        ul 
+            li 
+                a(href=topic.url+`/admin_settings`) Admin Settings     
+    hr
+    ul 
+        li 
+            a(href='/t/all') All
+        for topic in sidebar_topics 
+            if topic.name !== 'all'
+                li 
+                    a(href=topic.url) #{topic.name}

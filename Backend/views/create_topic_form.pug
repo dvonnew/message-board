@@ -1,0 +1,15 @@
+extends layout 
+
+block content 
+    h1= title 
+
+    form(method='POST' action='')
+        div.form-group 
+            label(for='name') New Topic Name:
+            input#name.form-control(type='text', placeholder='Topic Name' name='name' required='true')
+        button.btn.btn-primary(type='submit') Create Topic 
+    
+    if errors 
+        ul  
+            for err in errors 
+                li!=err.msg

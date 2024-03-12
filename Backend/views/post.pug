@@ -1,0 +1,9 @@
+extends layout 
+
+block content 
+    h1=title 
+    if user 
+        a(href=post.url + '/edit') Edit | 
+            a(href='') Delete
+
+    p #{post.body}

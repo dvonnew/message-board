@@ -1,0 +1,26 @@
+extends layout 
+
+block content 
+    h1= title 
+    
+    form(method="POST" action="")
+        div.form-group 
+            label(for="topic") Topic:
+            select#topic.form-control(type='select' placeholder="Select a Topic!" name="topic" required=true)
+                - topics.sort(function(a,b) {let textA=a.name.toUpperCase(); let textB= b.name.toUpperCase(); return(textA<textB) ? -1: (textA > textB) ? 1 : 0})
+                    for topic in topics 
+                        if post 
+                            option(value=topic._id select=(topic.id===post.topic ? 'selected' : false)) #{topic.name}
+                        else
+                            option(value=topic._id) #{topic.name}
+        div.form-group 
+            label(for='title') Post Title: 
+            input#title.form-control(type='text' placeholder='Post Title' name='title' require=true value=(undefined===post ? '' : post.title))
+            label(for="body") Post:
+            textarea#body.form-control(type='textarea', placeholder="Type your post out here!" name="body" required=true) #{undefined===post ? '' : post.body}
+        button.btn.btn-primary(type=submit) Submit Post!
+
+    if errors   
+        for err in errors 
+            ul 
+                li!=err.msg

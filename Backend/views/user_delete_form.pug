@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    h1= title 
+
+    form(method="POST" action='')
+        div.form-group
+            label(for='confirm_delete') Confirm deletion by entering your Username
+            input#confirm_delete.form-control(type='text', placholder='username' name="confirm_delete" required=true)
+        button.btn.btn-primary(type='submit') Delete Account
+
+    if errors 
+        ul 
+            for err in errors  
+                li!=err.msg
+            

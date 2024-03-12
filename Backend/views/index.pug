@@ -1,0 +1,49 @@
+extends layout
+
+
+block content
+  if !user
+
+    h1 Welcome to The Message Board Online
+
+    p To see posts, please 
+      a(href='sign-in') login 
+      a(href='/users/sign-up') or sign-up
+        
+  else
+    h1 Message Board Online
+
+    br
+
+    a(href="/posts/createpost") Post
+
+
+    
+block sidebar
+  if !user
+    ul
+      li 
+        a(href='t/all') Home
+      li
+        a(href="/sign-in") Sign-in
+      li 
+        a(href='/users/sign-up') Sign-up
+  else
+    ul
+      li 
+        a(href='t/all') Home
+      li
+        a(href=user.url) Profile
+      li 
+        a(href='/sign-out') Logout
+
+    hr
+    ul 
+      li 
+        a(href='/t/createtopic') Start a New Topic
+      li 
+        a(href='/posts/createpost') Create a New Post
+    hr
+    ul 
+      li 
+        a(href="/t/all") All

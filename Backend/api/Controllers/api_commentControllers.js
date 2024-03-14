@@ -46,7 +46,6 @@ exports.get_comments = (req, res) => {
         if(err) {
             return res.status(404).json({ error: "Oh no! ...Post could not be found"})
         }
-        console.log(comments)
         res.json(comments)
         
     })

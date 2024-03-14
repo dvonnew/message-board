@@ -27,6 +27,15 @@ const UserNavFav = () => {
         })
     }, [])
 
+    const onClick = (e) => {
+        e.preventDefault()
+        if (showMore === false) {
+            setShowMore(true)
+            return
+        }
+        setShowMore(false)
+    }
+
     return userFavorites ? (
         <>    
             <div className="user-fav-nav">
@@ -38,7 +47,8 @@ const UserNavFav = () => {
                                     <p>{navItem.name}</p>
                                 </Link>
                             </li>
-                        </> )) : 
+                        </> )) 
+                         : 
                     userFavorites.slice(0,5).map(navItem => (
                         <>
                              <li className="user-favorite-item">
@@ -48,6 +58,9 @@ const UserNavFav = () => {
                             </li>
                         </>
                     ))}
+                    <li>
+                        <button onClick={onClick}>{!showMore ? <p>Collapse</p>  : <p>Expand</p>}</button>
+                    </li>
                 </ul>
             </div>
         </>

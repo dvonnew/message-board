@@ -8,7 +8,6 @@ const Post = (props) => {
 
     const [userContext, setUserContext] = useContext(UserContext)
     const [showCommentBox, setShowCommentBox] = useState({display: 'none'})
-    const [comments, setComments] = useState([])
     const [post, setPost] = useState(props.post)
     const navStyle = {
         color: 'black'

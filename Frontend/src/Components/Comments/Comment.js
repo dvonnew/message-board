@@ -9,6 +9,11 @@ const Comment = (props) => {
     useEffect(() => {
         console.log(props.commentData)
     },[])
+
+    const onDelete = (e) => {
+        e.preventDefault()
+        props.onDelete(props.commentData._id)
+    }
     
     return !userContext.details ? (
         <>
@@ -25,7 +30,7 @@ const Comment = (props) => {
                 <p>{props.commentData.body}</p>
                 <div className='comment-sub-box'>
                     <p>{props.commentData.author} - {props.commentData.modified_date}</p>
-                    <button>Delete Comment</button>
+                    <button className='delete-btn' onClick={onDelete}>Delete Comment</button>
                 </div>
             </div>
         </>

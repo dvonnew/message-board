@@ -58,8 +58,8 @@ const UserNavFav = () => {
                             </li>
                         </>
                     ))}
-                    <li>
-                        <button onClick={onClick}>{!showMore ? <p>Collapse</p>  : <p>Expand</p>}</button>
+                    <li className='user-favorite-item'>
+                        <button onClick={onClick} className='nav-link'>{showMore ? <p>Collapse</p>  : <p>Expand</p>}</button>
                     </li>
                 </ul>
             </div>

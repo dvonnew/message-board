@@ -9,9 +9,9 @@ const Delete = (props) => {
     const [successStyle, setSuccessStyle] = useState({display: 'none'})
 
     useEffect(() => {
-        if(confirmation) {
-            deletePost()
-        }
+        // if(confirmation) {
+        //     deletePost()
+        // }
     }, [confirmation])
 
     const deletePost = () => {

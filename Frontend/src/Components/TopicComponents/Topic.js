@@ -77,7 +77,7 @@ const Topic = () => {
                     <h1 className='topic-title'>{!pageData.topic ? "Loading..." : pageData.topic.name}</h1>
                 </div>               
                 <div className='topic-body'>
-                    {!pageData.posts || pageData.posts.length() < 1 ? "No post yet!" : pageData.posts.map(post => (
+                    {!pageData.posts ? "No post yet!" : pageData.posts.map(post => (
                         <Post post={post} key={post._id} />
                     ))}
                 </div>
@@ -93,7 +93,7 @@ const Topic = () => {
                 </div>
                 <div className='topic-body'>
                     <Delete showDelete={showDelete} onCancel={onCancel} id={postID} deleteSuccess={deleteSuccess}/>
-                    {!pageData.posts || pageData.posts.length() < 1 ? "No posts yet!" : pageData.posts.map(post => (
+                    {!pageData.posts ? "No posts yet!" : pageData.posts.map(post => (
                         <Post post={post} key={post._id} onDelete={onDelete}/>
                     ))}
                 </div>

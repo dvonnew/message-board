@@ -21,6 +21,7 @@ const PostPage = (props) => {
     })
     const [userContext, setUserContext] = useContext(UserContext)
     const [showDelete, setShowDelete] = useState({display: 'none'})
+    const [ showDeleteComment, setShowDeleteComment] = useState({display: 'none'})
     const routeParams = useParams()
     const [ postID, setPostID ] = useState(routeParams.id)
     const [showCommentBox, setShowCommentBox] = useState({display: 'none'})
@@ -47,10 +48,9 @@ const PostPage = (props) => {
 
     const onDelete = (id) => {
         setShowDelete({display: 'block'})
-        setCommentID(id)
     }
 
-    const onCancel = (e) => {
+    const onCancelPostDelete = (e) => {
         setShowDelete({display: 'none'})
     }
 
@@ -70,6 +70,12 @@ const PostPage = (props) => {
 
     const onCancelComment = () => {
         setShowCommentBox({display: 'none'})
+        setShowDeleteComment({display: 'none'})
+    }
+
+    const onDeleteComment = (id) => {
+        setShowDeleteComment({display: 'block'})
+        setCommentID(id)
     }
 
     return !userContext.details ? (
@@ -96,7 +102,7 @@ const PostPage = (props) => {
     ) : (
         <>
             <div className='post-page'>
-                <Delete showDelete={showDelete} onCancel={onCancel} id={!post.post ? '' : post.post._id} deleteSuccess={deleteSuccess}/>
+                <Delete showDelete={showDelete} onCancel={onCancelPostDelete} id={!post.post ? '' : post.post._id} deleteSuccess={deleteSuccess}/>
                 <div className='post-header'>
                     <h4>
                         {!post ? "Loading Post...": post.post.title}
@@ -122,9 +128,9 @@ const PostPage = (props) => {
                     </div>
                     <div className='comment-section'>
                         <h5>Comments</h5>
-                        <DeleteComment showDelete={showDelete} onCancel={onCancel} id={commentID} deleteSuccess={deleteSuccess}/>
+                        <DeleteComment showDelete={showDeleteComment} onCancel={onCancelComment} id={commentID} deleteSuccess={deleteSuccess}/>
                         {!post || post.comments.length===0 ? "Grabbing any comments that might go to this post!" : post.comments.map(comment => (
-                            <Comment onDelete={onDelete} commentData={comment} key={comment._id} />
+                            <Comment onDelete={onDeleteComment} commentData={comment} key={comment._id} />
                         ))}
         
                     </div>

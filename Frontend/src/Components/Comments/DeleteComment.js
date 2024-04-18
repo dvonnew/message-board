@@ -8,11 +8,11 @@ const DeleteComment = (props) => {
     const [confirmationStyle, setConfimrationStyle] = useState({display: 'block'})
     const [successStyle, setSuccessStyle] = useState({display: 'none'})
     
-    useEffect(() => {
-        if(confirmation) {
-            deletePost()
-        }
-    }, [confirmation])
+    // useEffect(() => {
+    //     if(confirmation) {
+    //         deletePost()
+    //     }
+    // }, [confirmation])
 
     // const deletePost = () => {
     //     fetch(`/api/comments/${id}/delete`, {
